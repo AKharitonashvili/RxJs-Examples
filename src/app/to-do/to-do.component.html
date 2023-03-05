@@ -1,0 +1,10 @@
+<ng-container *ngIf="todos$ | async as todos">
+  <ul>
+    <li class="flex flex-between pad5" *ngFor="let todo of todos">
+      <div class="text-{{ todo.completed ? 'success' : 'fail' }}">
+        {{ todo.title }}
+      </div>
+      <button type="button" (click)="delete(todo.id)">X</button>
+    </li>
+  </ul>
+</ng-container>
