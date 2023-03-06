@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { TodosState } from '../../models/todo.models';
+import { Todo, TodosState } from '../../models/todo.models';
 import {
+  DeleteTodo,
   LoadTodos,
   LoadTodosFailure,
   LoadTodosSuccess,
@@ -23,6 +24,11 @@ export const TodosDataReducer = createReducer(
   on(LoadTodosFailure, (state: TodosState, { error }) => ({
     ...state,
     error,
+    loading: false,
+  })),
+  on(DeleteTodo, (state: TodosState, { id }) => ({
+    ...state,
+    data: state.data.filter((data: Todo) => data.id !== id),
     loading: false,
   }))
 );

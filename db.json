@@ -3,31 +3,61 @@
     {
       "userId": 1,
       "id": 1,
-      "title": "delectus aut autem",
+      "title": "Wake Up",
       "completed": false
     },
     {
       "userId": 1,
       "id": 2,
-      "title": "quis ut nam facilis et officia qui",
+      "title": "Brush Teeth",
       "completed": false
     },
     {
       "userId": 1,
       "id": 3,
-      "title": "fugiat veniam minus",
+      "title": "Exercise",
       "completed": false
     },
     {
       "userId": 1,
       "id": 4,
-      "title": "et porro tempora",
+      "title": "Prepare BreakFast",
       "completed": true
     },
     {
       "userId": 1,
       "id": 5,
-      "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+      "title": "Eat BreakFast",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 6,
+      "title": "Put on Clothes ",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 7,
+      "title": "Go To Work",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 8,
+      "title": "Work",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 9,
+      "title": "Break",
+      "completed": true
+    },
+    {
+      "userId": 1,
+      "id": 10,
+      "title": "Leave",
       "completed": false
     }
   ]

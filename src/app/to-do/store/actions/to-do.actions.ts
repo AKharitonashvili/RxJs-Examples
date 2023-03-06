@@ -11,3 +11,7 @@ export const LoadTodosFailure = createAction(
   '[TODO] Load Data Failure',
   props<{ error: HttpErrorResponse }>()
 );
+export const DeleteTodo = createAction(
+  '[TODO] Delete Todo',
+  props<{ id: number }>()
+);
