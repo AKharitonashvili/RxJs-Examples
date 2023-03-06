@@ -16,30 +16,24 @@ import { Todo } from '../models/todo.models';
 })
 export class TodoRestService {
   public todos$: Observable<Todo[]>;
-  private updateTodos$ = new Subject<void>();
+  private updateTodos$ = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
     this.todos$ = combineLatest(
       this.getTodos(),
       this.updateTodos$.pipe(startWith(null))
     ).pipe(
-      map(([todos]) => {
+      map(([todos, isChanged]) => {
         return todos;
       })
     );
   }
 
-  public deleteTodo(id: number) {
-    this.http
-      .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-      .pipe(
-        take(1),
-        tap(() => this.updateTodos$.next())
-      )
-      .subscribe();
+  public deleteTodo(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:3000/todos/${id}`);
   }
 
   private getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos');
+    return this.http.get<Todo[]>('http://localhost:3000/todos');
   }
 }
