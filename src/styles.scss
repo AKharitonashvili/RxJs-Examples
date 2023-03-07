@@ -19,7 +19,7 @@ html {
   height: 100%;
 }
 
-ul{
+ul {
   padding-inline-start: 0;
 }
 
@@ -40,7 +40,7 @@ ul{
   justify-content: flex-start;
 }
 
-.flex-column{
+.flex-column {
   flex-direction: column;
 }
 
@@ -54,6 +54,18 @@ ul{
 
 .pad5 {
   padding: 5px;
+}
+
+.pad10 {
+  padding: 10px;
+}
+
+.pad15 {
+  padding: 15px;
+}
+
+.pad20 {
+  padding: 20px;
 }
 
 .pad-right-5 {
@@ -140,9 +152,7 @@ ul{
   border-radius: 3px;
   font-family: inherit;
   border: none;
-  margin: 5px;
   border-bottom: 2px solid $blue;
-
   outline: $blue solid 1px !important;
 }
 
@@ -155,6 +165,11 @@ ul{
   &:hover {
     filter: saturate(10%);
   }
+}
+
+.btn-large {
+  @extend .btn;
+  padding: 15px;
 }
 
 .btn-success {

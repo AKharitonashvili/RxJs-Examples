@@ -1,9 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, take, tap } from 'rxjs';
+import { map, Observable, take, tap } from 'rxjs';
 import { Todo } from './models/todo.models';
 import { TodoRestService } from './services/todo-rest.service';
 import {
+  AddTodo,
   DeleteTodo,
   LoadTodos,
   ModifyTodo,
@@ -17,11 +24,22 @@ import { selectTodosData } from './store/selectors/to-do.reducers';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoComponent implements OnInit {
+  public formGroup: FormGroup;
   public todos$: Observable<Todo[]>;
 
-  constructor(private rest: TodoRestService, private store: Store) {}
+  constructor(
+    private rest: TodoRestService,
+    private store: Store,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
+    this.formGroup = this.fb.group({
+      addTodoControl: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+    });
     this.store.dispatch(LoadTodos());
 
     this.todos$ = this.store.select(selectTodosData);
@@ -44,6 +62,23 @@ export class ToDoComponent implements OnInit {
       .pipe(
         take(1),
         tap(() => this.store.dispatch(ModifyTodo({ todo: modifiedTodo })))
+      )
+      .subscribe();
+  }
+
+  public addTodo(): void {
+    const todo: Todo = {
+      id: Math.random(),
+      title: this.formGroup.get('addTodoControl').value as string,
+      userId: 1,
+      completed: false,
+    };
+    this.rest
+      .addTodo(todo)
+      .pipe(
+        take(1),
+        tap(() => this.store.dispatch(AddTodo({ todo }))),
+        tap(() => this.formGroup.get('addTodoControl').reset())
       )
       .subscribe();
   }

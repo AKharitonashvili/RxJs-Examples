@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Todo, TodosState } from '../../models/todo.models';
 import {
+  AddTodo,
   DeleteTodo,
   LoadTodos,
   LoadTodosFailure,
@@ -39,5 +40,9 @@ export const TodosDataReducer = createReducer(
       }
       return data;
     }),
+  })),
+  on(AddTodo, (state: TodosState, { todo }) => ({
+    ...state,
+    data: [...state.data, todo],
   }))
 );

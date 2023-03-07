@@ -20,14 +20,22 @@
       </div>
     </li>
     <li class="flex flex-center flex-column">
-      <input
-        class="w100 input mar-y-5"
-        type="text"
-        placeholder="Add New Task"
-      />
-      <button class="btn btn-fail w100" type="button" >
-        Add Task
-      </button>
+      <form class="w100" [formGroup]="formGroup">
+        <input
+          class="w100 input mar-y-5"
+          type="text"
+          placeholder="Add New Task"
+          formControlName="addTodoControl"
+        />
+        <button
+          class="btn btn-fail w100 btn-large"
+          type="button"
+          [disabled]="formGroup.invalid"
+          (click)="addTodo()"
+        >
+          Add Task
+        </button>
+      </form>
     </li>
   </ul>
 </ng-container>
