@@ -33,6 +33,13 @@ export class TodoRestService {
     return this.http.delete<void>(`http://localhost:3000/todos/${id}`);
   }
 
+  public modifyTodo(todo: Todo): Observable<Todo> {
+    return this.http.patch<Todo>(
+      `http://localhost:3000/todos/${todo.id}`,
+      todo
+    );
+  }
+
   private getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>('http://localhost:3000/todos');
   }

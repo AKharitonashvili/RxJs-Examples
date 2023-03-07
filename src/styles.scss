@@ -1,9 +1,26 @@
+$red: #dc3545;
+$yellow: #ffc107;
+$green: #28a745;
+$gray: #6c757d;
+$blue: #007bff;
+$dark: #343a40;
+$light: #f8f9fa;
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
 body,
 html {
   padding: 0;
   margin: 0;
   width: 100%;
   height: 100%;
+}
+
+ul{
+  padding-inline-start: 0;
 }
 
 .flex {
@@ -19,6 +36,14 @@ html {
   justify-content: space-between;
 }
 
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
 .w100 {
   width: 100%;
 }
@@ -31,15 +56,127 @@ html {
   padding: 5px;
 }
 
+.pad-right-5 {
+  padding-right: 5px;
+}
+
+.pad-left-5 {
+  padding-left: 5px;
+}
+
+.mar-right-5 {
+  margin-right: 5px;
+}
+
+.mar-right-10 {
+  margin-right: 10px;
+}
+
+.mar-left-5 {
+  margin-left: 5px;
+}
+
+.mar-left-10 {
+  margin-left: 10px;
+}
+
+.mar-top-5 {
+  margin-top: 5px;
+}
+
+.mar-top-10 {
+  margin-top: 10px;
+}
+
+.mar-bott-5 {
+  margin-bottom: 5px;
+}
+
+.mar-bott-10 {
+  margin-bottom: 10px;
+}
+
+.mar-y-5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.mar-x-5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.pad-y-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.pad-y-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pad-x-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.pad-x-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .text-success {
-  color: green;
+  color: $green;
 }
 
 .text-fail {
-  color: red;
+  color: $red;
 }
 
-app-to-do{
+.input {
+  @extend .pad-y-10;
+  @extend .pad-x-10;
+  border-radius: 3px;
+  font-family: inherit;
+  border: none;
+  margin: 5px;
+  border-bottom: 2px solid $blue;
+
+  outline: $blue solid 1px !important;
+}
+
+.btn {
+  padding: 5px 20px;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  border-radius: 2px;
+  color: $light;
+  &:hover {
+    filter: saturate(10%);
+  }
+}
+
+.btn-success {
+  @extend .btn;
+  background-color: $green;
+  border-color: $green;
+}
+
+.btn-warning {
+  @extend .btn;
+  background-color: $yellow;
+  border-color: $yellow;
+}
+
+.btn-fail {
+  @extend .btn;
+  background-color: $red;
+  border-color: $red;
+}
+
+app-to-do {
   display: block;
-  width: 60%;
+  min-width: 30%;
+  max-width: 800px;
 }

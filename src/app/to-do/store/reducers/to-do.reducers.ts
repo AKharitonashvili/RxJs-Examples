@@ -5,6 +5,7 @@ import {
   LoadTodos,
   LoadTodosFailure,
   LoadTodosSuccess,
+  ModifyTodo,
 } from '../actions/to-do.actions';
 
 export const InitialTodosState: TodosState = {
@@ -29,6 +30,14 @@ export const TodosDataReducer = createReducer(
   on(DeleteTodo, (state: TodosState, { id }) => ({
     ...state,
     data: state.data.filter((data: Todo) => data.id !== id),
-    loading: false,
+  })),
+  on(ModifyTodo, (state: TodosState, { todo }) => ({
+    ...state,
+    data: state.data.map((data: Todo) => {
+      if (data.id === todo.id) {
+        return todo;
+      }
+      return data;
+    }),
   }))
 );

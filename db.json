@@ -4,19 +4,19 @@
       "userId": 1,
       "id": 1,
       "title": "Wake Up",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
       "id": 2,
       "title": "Brush Teeth",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
       "id": 3,
       "title": "Exercise",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
@@ -28,25 +28,25 @@
       "userId": 1,
       "id": 5,
       "title": "Eat BreakFast",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
       "id": 6,
       "title": "Put on Clothes ",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
       "id": 7,
       "title": "Go To Work",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
       "id": 8,
       "title": "Work",
-      "completed": false
+      "completed": true
     },
     {
       "userId": 1,
@@ -58,7 +58,7 @@
       "userId": 1,
       "id": 10,
       "title": "Leave",
-      "completed": false
+      "completed": true
     }
   ]
 }

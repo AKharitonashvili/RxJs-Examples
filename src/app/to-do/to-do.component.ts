@@ -3,7 +3,11 @@ import { Store } from '@ngrx/store';
 import { Observable, take, tap } from 'rxjs';
 import { Todo } from './models/todo.models';
 import { TodoRestService } from './services/todo-rest.service';
-import { DeleteTodo, LoadTodos } from './store/actions/to-do.actions';
+import {
+  DeleteTodo,
+  LoadTodos,
+  ModifyTodo,
+} from './store/actions/to-do.actions';
 import { selectTodosData } from './store/selectors/to-do.reducers';
 
 @Component({
@@ -23,12 +27,23 @@ export class ToDoComponent implements OnInit {
     this.todos$ = this.store.select(selectTodosData);
   }
 
-  public delete(id: number) {
+  public delete(id: number): void {
     this.rest
       .deleteTodo(id)
       .pipe(
         take(1),
         tap(() => this.store.dispatch(DeleteTodo({ id })))
+      )
+      .subscribe();
+  }
+
+  public modify(todo: Todo): void {
+    const modifiedTodo: Todo = { ...todo, completed: !todo.completed };
+    this.rest
+      .modifyTodo(modifiedTodo)
+      .pipe(
+        take(1),
+        tap(() => this.store.dispatch(ModifyTodo({ todo: modifiedTodo })))
       )
       .subscribe();
   }

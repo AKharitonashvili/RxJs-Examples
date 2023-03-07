@@ -1,10 +1,33 @@
 <ng-container *ngIf="todos$ | async as todos">
   <ul>
     <li class="flex flex-between pad5" *ngFor="let todo of todos">
-      <div class="text-{{ todo.completed ? 'success' : 'fail' }}">
-        {{ todo.title }}
+      <div
+        class="text-{{ todo.completed ? 'success' : 'fail' }} flex flex-center"
+      >
+        <div>{{ todo.title }}</div>
       </div>
-      <button type="button" (click)="delete(todo.id)">X</button>
+      <div class="flex flex-between">
+        <button
+          class="btn btn-warning mar-right-5 mar-left-10"
+          type="button"
+          (click)="modify(todo)"
+        >
+          Edit
+        </button>
+        <button class="btn btn-fail" type="button" (click)="delete(todo.id)">
+          X
+        </button>
+      </div>
+    </li>
+    <li class="flex flex-center flex-column">
+      <input
+        class="w100 input mar-y-5"
+        type="text"
+        placeholder="Add New Task"
+      />
+      <button class="btn btn-fail w100" type="button" >
+        Add Task
+      </button>
     </li>
   </ul>
 </ng-container>
