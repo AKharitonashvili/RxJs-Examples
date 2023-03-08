@@ -152,8 +152,12 @@ ul {
   border-radius: 3px;
   font-family: inherit;
   border: none;
-  border-bottom: 2px solid $blue;
+  border-bottom: 2px solid $green;
   outline: $blue solid 1px !important;
+  color: $blue;
+  &::placeholder{
+    color: $gray;
+  }
 }
 
 .btn {
