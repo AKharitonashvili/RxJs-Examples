@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
       },
       {
         text: 'Posts',
-        route: '/Posts',
+        route: '/User-Posts',
       },
     ];
   }

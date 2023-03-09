@@ -4,14 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'Todo',
+    loadChildren: () => import('./todo/todo.module').then((m) => m.TodoModule),
+  },
+  {
+    path: 'User-Posts',
     loadChildren: () =>
-      import('./todo/todo.module').then((m) => m.TodoModule),
+      import('./user-posts/user-posts.module').then((m) => m.UserPostsModule),
   },
   {
     path: '',
     redirectTo: '/Todo',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
