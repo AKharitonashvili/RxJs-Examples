@@ -14,16 +14,16 @@ import {
   DeleteTodo,
   LoadTodos,
   ModifyTodo,
-} from './store/actions/to-do.actions';
-import { selectTodosData } from './store/selectors/to-do.reducers';
+} from './store/actions/todo.actions';
+import { selectTodosData } from './store/selectors/todo.reducers';
 
 @Component({
-  selector: 'app-to-do',
-  templateUrl: './to-do.component.html',
-  styleUrls: ['./to-do.component.scss'],
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToDoComponent implements OnInit {
+export class TodoComponent implements OnInit {
   public formGroup: FormGroup;
   public todos$: Observable<Todo[]>;
 

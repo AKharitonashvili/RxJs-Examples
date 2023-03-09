@@ -7,7 +7,7 @@ import {
   LoadTodosFailure,
   LoadTodosSuccess,
   ModifyTodo,
-} from '../actions/to-do.actions';
+} from '../actions/todo.actions';
 
 export const InitialTodosState: TodosState = {
   data: [],

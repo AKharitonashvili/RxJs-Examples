@@ -155,7 +155,7 @@ ul {
   border-bottom: 2px solid $green;
   outline: $blue solid 1px !important;
   color: $blue;
-  &::placeholder{
+  &::placeholder {
     color: $gray;
   }
 }
@@ -194,13 +194,13 @@ ul {
   border-color: $red;
 }
 
-app-to-do {
+app-todo {
   display: block;
   min-width: 30%;
   max-width: 800px;
 }
 
-.container{
+.container {
   border: 1px solid $dark;
   border-radius: 4px;
   padding: 15px;

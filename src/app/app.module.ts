@@ -6,8 +6,8 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToDoEffects } from './to-do/store/effects/to-do.effects';
-import { TodosDataReducer } from './to-do/store/reducers/to-do.reducers';
+import { ToDoEffects } from './todo/store/effects/todo.effects';
+import { TodosDataReducer } from './todo/store/reducers/todo.reducers';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({

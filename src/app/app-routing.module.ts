@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'Todo',
     loadChildren: () =>
-      import('./to-do/to-do.module').then((m) => m.ToDoModule),
+      import('./todo/todo.module').then((m) => m.TodoModule),
   },
   {
     path: '',

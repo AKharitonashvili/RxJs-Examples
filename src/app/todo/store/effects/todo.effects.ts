@@ -7,7 +7,7 @@ import {
   LoadTodos,
   LoadTodosFailure,
   LoadTodosSuccess,
-} from '../actions/to-do.actions';
+} from '../actions/todo.actions';
 
 @Injectable()
 export class ToDoEffects {
