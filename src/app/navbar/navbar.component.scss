@@ -1,0 +1,29 @@
+@import "../../styles.scss";
+
+nav {
+  position: sticky;
+  display: block;
+  top: 0;
+  background-color: $dark;
+  ul {
+    display: flex;
+    margin: 0;
+    list-style: none;
+    li {
+      padding:20px 15px;
+      a {
+        color: $light;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.5em;
+        &:hover {
+          @extend .is-active;
+        }
+      }
+    }
+  }
+}
+
+.is-active {
+  color: $yellow !important;
+}

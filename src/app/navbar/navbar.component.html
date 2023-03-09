@@ -1,0 +1,9 @@
+<nav>
+  <ul>
+    <li *ngFor="let routerLink of routerLinks">
+      <a href="#" [routerLink]="routerLink.route" routerLinkActive="is-active">
+        {{ routerLink.text }}
+      </a>
+    </li>
+  </ul>
+</nav>
