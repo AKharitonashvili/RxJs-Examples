@@ -1,41 +1,42 @@
-<ng-container *ngIf="todos$ | async as todos">
-  <ul class="container">
-    <li class="flex flex-between pad5" *ngFor="let todo of todos">
-      <div
-        class="text-{{ todo.completed ? 'success' : 'fail' }} flex flex-center"
+<ul class="container" *ngIf="todos$ | async as todos">
+  <li class="flex flex-center flex-column" *ngIf="todos.loading">
+    <app-spinner [diameter]="30"></app-spinner>
+  </li>
+  <li class="flex flex-between pad5" *ngFor="let todo of todos.data">
+    <div
+      class="text-{{ todo.completed ? 'success' : 'fail' }} flex flex-center"
+    >
+      <div>{{ todo.title }}</div>
+    </div>
+    <div class="flex flex-between">
+      <button
+        class="btn btn-warning mar-right-5 mar-left-10"
+        type="button"
+        (click)="modify(todo)"
       >
-        <div>{{ todo.title }}</div>
-      </div>
-      <div class="flex flex-between">
-        <button
-          class="btn btn-warning mar-right-5 mar-left-10"
-          type="button"
-          (click)="modify(todo)"
-        >
-          Edit
-        </button>
-        <button class="btn btn-fail" type="button" (click)="delete(todo.id)">
-          X
-        </button>
-      </div>
-    </li>
-    <li class="flex flex-center flex-column">
-      <form class="w100" [formGroup]="formGroup">
-        <input
-          class="w100 input mar-y-5"
-          type="text"
-          placeholder="Add New Task"
-          formControlName="addTodoControl"
-        />
-        <button
-          class="btn btn-success w100 btn-large"
-          type="button"
-          [disabled]="formGroup.invalid"
-          (click)="addTodo()"
-        >
-          Add Task
-        </button>
-      </form>
-    </li>
-  </ul>
-</ng-container>
+        Edit
+      </button>
+      <button class="btn btn-fail" type="button" (click)="delete(todo.id)">
+        X
+      </button>
+    </div>
+  </li>
+  <li class="flex flex-center flex-column">
+    <form class="w100" [formGroup]="formGroup">
+      <input
+        class="w100 input mar-y-5"
+        type="text"
+        placeholder="Add New Task"
+        formControlName="addTodoControl"
+      />
+      <button
+        class="btn btn-success w100 btn-large"
+        type="button"
+        [disabled]="formGroup.invalid"
+        (click)="addTodo()"
+      >
+        Add Task
+      </button>
+    </form>
+  </li>
+</ul>

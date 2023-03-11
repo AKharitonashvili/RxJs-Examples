@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { map, Observable, take, tap } from 'rxjs';
-import { Todo } from './models/todo.models';
+import { Todo, TodosState } from './models/todo.models';
 import { TodoRestService } from './services/todo-rest.service';
 import {
   AddTodo,
@@ -25,7 +25,7 @@ import { selectTodosData } from './store/selectors/todo.reducers';
 })
 export class TodoComponent implements OnInit {
   public formGroup: FormGroup;
-  public todos$: Observable<Todo[]>;
+  public todos$: Observable<TodosState>;
 
   constructor(
     private rest: TodoRestService,
@@ -42,7 +42,9 @@ export class TodoComponent implements OnInit {
     });
     this.store.dispatch(LoadTodos());
 
-    this.todos$ = this.store.select(selectTodosData);
+    this.todos$ = this.store
+      .select(selectTodosData)
+      .pipe(tap((v) => console.log(v)));
   }
 
   public delete(id: number): void {

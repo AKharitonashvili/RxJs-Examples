@@ -11,6 +11,7 @@ import { ToDoEffects } from './todo/store/effects/todo.effects';
 import { TodosDataReducer } from './todo/store/reducers/todo.reducers';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -26,6 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

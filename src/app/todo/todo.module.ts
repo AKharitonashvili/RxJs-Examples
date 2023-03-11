@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoRestService } from './services/todo-rest.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UiModule } from '../ui/ui.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    UiModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(routes),
