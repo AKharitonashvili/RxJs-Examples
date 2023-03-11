@@ -1,8 +1,16 @@
 <ul class="container" *ngIf="todos$ | async as todos">
-  <li class="flex flex-center flex-column" *ngIf="todos.loading">
+  <li class="flex flex-center flex-column relative">
+    <p>Todo Tasks</p>
+  </li>
+  <li class="flex flex-center flex-column relative" *ngIf="todos.loading">
     <app-spinner [diameter]="30"></app-spinner>
   </li>
-  <li class="flex flex-between pad5" *ngFor="let todo of todos.data">
+  <li class="flex flex-between pad5 relative" *ngFor="let todo of todos.data">
+    <app-spinner
+      class="absolute"
+      *ngIf="todo?.loading"
+      [diameter]="30"
+    ></app-spinner>
     <div
       class="text-{{ todo.completed ? 'success' : 'fail' }} flex flex-center"
     >

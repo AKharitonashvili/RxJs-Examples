@@ -14,6 +14,7 @@ import {
   DeleteTodo,
   LoadTodos,
   ModifyTodo,
+  SetTodoLoading,
 } from './store/actions/todo.actions';
 import { selectTodosData } from './store/selectors/todo.reducers';
 
@@ -42,19 +43,12 @@ export class TodoComponent implements OnInit {
     });
     this.store.dispatch(LoadTodos());
 
-    this.todos$ = this.store
-      .select(selectTodosData)
-      .pipe(tap((v) => console.log(v)));
+    this.todos$ = this.store.select(selectTodosData);
   }
 
   public delete(id: number): void {
-    this.rest
-      .deleteTodo(id)
-      .pipe(
-        take(1),
-        tap(() => this.store.dispatch(DeleteTodo({ id })))
-      )
-      .subscribe();
+    this.store.dispatch(SetTodoLoading({ id, loading: true }));
+    this.store.dispatch(DeleteTodo({ id }));
   }
 
   public modify(todo: Todo): void {

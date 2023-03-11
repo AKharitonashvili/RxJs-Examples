@@ -3,10 +3,12 @@ import { Todo, TodosState } from '../../models/todo.models';
 import {
   AddTodo,
   DeleteTodo,
+  DeleteTodoSuccess,
   LoadTodos,
   LoadTodosFailure,
   LoadTodosSuccess,
   ModifyTodo,
+  SetTodoLoading,
 } from '../actions/todo.actions';
 
 export const InitialTodosState: TodosState = {
@@ -28,7 +30,7 @@ export const TodosDataReducer = createReducer(
     error,
     loading: false,
   })),
-  on(DeleteTodo, (state: TodosState, { id }) => ({
+  on(DeleteTodoSuccess, (state: TodosState, { id }) => ({
     ...state,
     data: state.data.filter((data: Todo) => data.id !== id),
   })),
@@ -44,5 +46,15 @@ export const TodosDataReducer = createReducer(
   on(AddTodo, (state: TodosState, { todo }) => ({
     ...state,
     data: [...state.data, todo],
+  })),
+  on(SetTodoLoading, (state: TodosState, { id, loading }) => ({
+    ...state,
+    data: state.data.map((data: Todo) => {
+      console.log(data)
+      if (data.id === id) {
+        return { ...data, loading };
+      }
+      return data;
+    }),
   }))
 );

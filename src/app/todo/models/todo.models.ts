@@ -5,6 +5,7 @@ export interface Todo {
   id: number;
   title: string;
   completed: boolean;
+  loading?: boolean;
 }
 
 export interface TodosState {

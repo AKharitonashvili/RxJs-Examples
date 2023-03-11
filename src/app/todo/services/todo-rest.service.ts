@@ -16,7 +16,7 @@ export class TodoRestService {
   public deleteTodo(id: number): Observable<void> {
     return this.http
       .delete<void>(`http://localhost:3000/todos/${id}`)
-      .pipe(delay(1000));
+      .pipe(delay(5000));
   }
 
   public addTodo(todo: Todo): Observable<void> {
