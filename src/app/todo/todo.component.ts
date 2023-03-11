@@ -47,19 +47,15 @@ export class TodoComponent implements OnInit {
   }
 
   public delete(id: number): void {
-    this.store.dispatch(SetTodoLoading({ id, loading: true }));
     this.store.dispatch(DeleteTodo({ id }));
   }
 
   public modify(todo: Todo): void {
-    const modifiedTodo: Todo = { ...todo, completed: !todo.completed };
-    this.rest
-      .modifyTodo(modifiedTodo)
-      .pipe(
-        take(1),
-        tap(() => this.store.dispatch(ModifyTodo({ todo: modifiedTodo })))
-      )
-      .subscribe();
+    this.store.dispatch(
+      ModifyTodo({
+        todo: { ...todo, completed: !todo.completed },
+      })
+    );
   }
 
   public addTodo(): void {

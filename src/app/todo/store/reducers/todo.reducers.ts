@@ -8,6 +8,7 @@ import {
   LoadTodosFailure,
   LoadTodosSuccess,
   ModifyTodo,
+  ModifyTodoSuccess,
   SetTodoLoading,
 } from '../actions/todo.actions';
 
@@ -36,6 +37,9 @@ export const TodosDataReducer = createReducer(
   })),
   on(ModifyTodo, (state: TodosState, { todo }) => ({
     ...state,
+  })),
+  on(ModifyTodoSuccess, (state: TodosState, { todo }) => ({
+    ...state,
     data: state.data.map((data: Todo) => {
       if (data.id === todo.id) {
         return todo;
@@ -50,7 +54,6 @@ export const TodosDataReducer = createReducer(
   on(SetTodoLoading, (state: TodosState, { id, loading }) => ({
     ...state,
     data: state.data.map((data: Todo) => {
-      console.log(data)
       if (data.id === id) {
         return { ...data, loading };
       }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { catchError, combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { Todo } from '../../models/todo.models';
 import { TodoRestService } from '../../services/todo-rest.service';
 import {
@@ -9,12 +10,18 @@ import {
   LoadTodos,
   LoadTodosFailure,
   LoadTodosSuccess,
+  ModifyTodo,
+  ModifyTodoSuccess,
   SetTodoLoading,
 } from '../actions/todo.actions';
 
 @Injectable()
 export class ToDoEffects {
-  constructor(private actions$: Actions, private rest: TodoRestService) {}
+  constructor(
+    private actions$: Actions,
+    private rest: TodoRestService,
+    private store: Store
+  ) {}
 
   loadTodos$ = createEffect(() =>
     this.actions$.pipe(
@@ -31,11 +38,36 @@ export class ToDoEffects {
   deleteTodo$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeleteTodo),
+      tap((action) =>
+        this.store.dispatch(SetTodoLoading({ id: action.id, loading: true }))
+      ),
       switchMap((action) =>
         this.rest.deleteTodo(action.id).pipe(
           map(() => DeleteTodoSuccess({ id: action.id })),
           catchError(() =>
             of(SetTodoLoading({ id: action.id, loading: false }))
+          )
+        )
+      )
+    )
+  );
+
+  modifyTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ModifyTodo),
+      tap((action) =>
+        this.store.dispatch(
+          SetTodoLoading({ id: action.todo.id, loading: true })
+        )
+      ),
+      switchMap((action) =>
+        this.rest.modifyTodo(action.todo).pipe(
+          tap((todo) =>
+            this.store.dispatch(SetTodoLoading({ id: todo.id, loading: false }))
+          ),
+          map((todo) => ModifyTodoSuccess({ todo })),
+          catchError(() =>
+            of(SetTodoLoading({ id: action.todo.id, loading: false }))
           )
         )
       )

@@ -29,7 +29,7 @@ export class TodoRestService {
     return this.http.patch<Todo>(
       `http://localhost:3000/todos/${todo.id}`,
       todo
-    );
+    ).pipe(delay(1000));;
   }
 
   private getTodos(): Observable<Todo[]> {
