@@ -1,14 +1,12 @@
-<ul class="container" *ngIf="todos$ | async as todos">
-  <li class="flex flex-center flex-column relative">
+<ul class="container relative" *ngIf="todos$ | async as todos">
+  <li class="flex flex-center flex-column ">
     <p>Todo Tasks</p>
-  </li>
-  <li class="flex flex-center flex-column relative" *ngIf="todos.loading">
-    <app-spinner [diameter]="30"></app-spinner>
+    <app-spinner *ngIf="todos.loading" [diameter]="30"></app-spinner>
   </li>
   <li class="flex flex-between pad5 relative" *ngFor="let todo of todos.data">
     <app-spinner
       class="absolute"
-      *ngIf="todo?.loading"
+      *ngIf="todo?.loading "
       [diameter]="30"
     ></app-spinner>
     <div
@@ -29,7 +27,7 @@
       </button>
     </div>
   </li>
-  <li class="flex flex-center flex-column">
+  <li class="flex flex-center flex-column" *ngIf="!todos.loading">
     <form class="w100" [formGroup]="formGroup">
       <input
         class="w100 input mar-y-5"
