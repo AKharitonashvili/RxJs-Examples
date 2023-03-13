@@ -31,6 +31,10 @@ export const ModifyTodoSuccess = createAction(
 );
 
 export const AddTodo = createAction('[TODO] Add Todo', props<{ todo: Todo }>());
+export const AddTodoSuccess = createAction(
+  '[TODO] Add Todo Success',
+  props<{ todo: Todo }>()
+);
 
 export const SetTodoLoading = createAction(
   '[TODO] Set Todo Loading',

@@ -59,19 +59,15 @@ export class TodoComponent implements OnInit {
   }
 
   public addTodo(): void {
-    const todo: Todo = {
-      id: Math.random(),
-      title: this.formGroup.get('addTodoControl').value as string,
-      userId: 1,
-      completed: false,
-    };
-    this.rest
-      .addTodo(todo)
-      .pipe(
-        take(1),
-        tap(() => this.store.dispatch(AddTodo({ todo }))),
-        tap(() => this.formGroup.get('addTodoControl').reset())
-      )
-      .subscribe();
+    this.store.dispatch(
+      AddTodo({
+        todo: {
+          id: Math.random(),
+          title: this.formGroup.get('addTodoControl').value as string,
+          userId: 1,
+          completed: false,
+        },
+      })
+    );
   }
 }

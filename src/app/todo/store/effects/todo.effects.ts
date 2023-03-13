@@ -5,6 +5,8 @@ import { catchError, combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { Todo } from '../../models/todo.models';
 import { TodoRestService } from '../../services/todo-rest.service';
 import {
+  AddTodo,
+  AddTodoSuccess,
   DeleteTodo,
   DeleteTodoSuccess,
   LoadTodos,
@@ -69,6 +71,30 @@ export class ToDoEffects {
           catchError(() =>
             of(SetTodoLoading({ id: action.todo.id, loading: false }))
           )
+        )
+      )
+    )
+  );
+
+  addTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AddTodo),
+      tap((action) =>
+        this.store.dispatch(
+          SetTodoLoading({ id: action.todo.id, loading: false })
+        )
+      ),
+      switchMap((action) =>
+        this.rest.addTodo(action.todo).pipe(
+          tap(() =>
+            this.store.dispatch(
+              SetTodoLoading({ id: action.todo.id, loading: false })
+            )
+          ),
+          catchError(() =>
+            of(this.store.dispatch(DeleteTodo({ id: action.todo.id })))
+          ),
+          map(() => AddTodoSuccess({ todo: action.todo })),
         )
       )
     )
